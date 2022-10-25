@@ -13,6 +13,7 @@ public class Simulation {
     //CHANGE ME
     static Integer groupSizes = 4;
     private static int counterOfStudents = 0;
+    private static int numberOfGroups;
 
 
     public static void main(String[] args) throws IOException {
@@ -78,17 +79,25 @@ public class Simulation {
             gui.groupsWindow.setSize(700,700);
             JPanel groupPanel = new JPanel();
 
-            int counter_ = 0;
-            JLabel new_ = new JLabel();
+            int h=0;
+            String nameTag = "<html><body>";
+            String EOL = "<br>";
+            String EOF = "</body></html>";
 
+            //need to store it in a list and then rewrite in htm ´to store in a single Label
             for (String[] s:
             bamboozledGroups) {
                 for (String name:
                      s) {
-                    groupPanel.add(new JLabel(name));
+                    nameTag = nameTag + name + "   ";
                 }
+                nameTag += EOL;
+                nameTag += EOL;
             }
-
+            nameTag += EOF;
+            JLabel nameTags = new JLabel(nameTag);
+            groupPanel.add(nameTags);
+            groupPanel.setVisible(true);
             gui.groupsWindow.add(groupPanel);
             gui.groupsWindow.setVisible(true);
 
@@ -109,7 +118,7 @@ public class Simulation {
     private static String[][] hashing(Integer numberOfParticipants, HashMap<Integer,String> actives) {
 
         int leftovers = numberOfParticipants%groupSizes;
-        int numberOfGroups = (numberOfParticipants-leftovers)/groupSizes;
+        numberOfGroups = (numberOfParticipants-leftovers)/groupSizes;
         if(leftovers != 0){
             groupSizes++;
         }
