@@ -11,7 +11,7 @@ public class Simulation {
     //CHANGE ME
     
     //CHANGE ME
-    static Integer groupSizes = 4;
+    static Integer groupSizes = 3;
     private static int counterOfStudents = 0;
     private static int numberOfGroups;
 
@@ -38,9 +38,6 @@ public class Simulation {
 
         GUI gui = new GUI();
         gui.startWindow.setSize(700,700);
-
-        PopupMenu checkPartcipant = new PopupMenu();
-        checkPartcipant.add(new MenuItem("A",new MenuShortcut(KeyEvent.VK_A, false)));
 
         JPanel panel = new JPanel();
         LayoutManager layout = new FlowLayout();
@@ -76,7 +73,7 @@ public class Simulation {
             gui.startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             gui.startWindow.setVisible(false);
             gui.startWindow.dispose();
-            gui.groupsWindow.setSize(700,700);
+            gui.groupsWindow.setSize(700,900);
             JPanel groupPanel = new JPanel();
 
             int h=0;
@@ -89,8 +86,9 @@ public class Simulation {
             bamboozledGroups) {
                 for (String name:
                      s) {
-                    nameTag = nameTag + name + "   ";
+                    nameTag = (nameTag.equals(String.valueOf(Integer.MIN_VALUE)))?(""):(nameTag + name + EOL);
                 }
+                nameTag += EOL;
                 nameTag += EOL;
                 nameTag += EOL;
             }
