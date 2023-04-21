@@ -2,10 +2,8 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class Simulation {
     //CHANGE ME
@@ -18,9 +16,16 @@ public class Simulation {
 
     public static void main(String[] args) throws IOException {
 
+        int[] List1 = {1,2,3,4};
+        int[] List2 = {5,6,7,8};
+        List2 = List1;
+        List2[0] = 9;
+        System.out.println(List1[0]);
+
         LinkedList<String> participantsList = new LinkedList<>();
-        HashMap<Integer,String> participantList = new HashMap<>();
+        HashMap<Integer,Integer[]> participantStruggles = new HashMap<>();
         HashMap<Integer,String> activeParticipantList = new HashMap<>();
+        Integer[] bigStruggles;
 
         File participants = new File("src/main/participantList.txt");
         Scanner sc = new Scanner(participants);
@@ -37,7 +42,7 @@ public class Simulation {
 
 
         GUI gui = new GUI();
-        gui.startWindow.setSize(700,700);
+        gui.startWindow.setSize(550,800);
 
         JPanel panel = new JPanel();
         LayoutManager layout = new FlowLayout();
@@ -62,6 +67,28 @@ public class Simulation {
                 }
             });
 
+            Integer[] struggles = new Integer[3];
+            JTextField struggles1 = new JTextField();
+            struggles1.setText("10");
+            struggles1.addActionListener(e->{
+                Object source = e.getSource();
+                struggles[0] = Integer.parseInt(((JTextField)source).getText());
+            });
+
+            JTextField struggles2 = new JTextField();
+            struggles2.setText("10");
+            struggles2.addActionListener(e->{
+                Object source = e.getSource();
+                struggles[1] = Integer.parseInt(((JTextField)source).getText());
+            });
+
+            JTextField struggles3 = new JTextField();
+            struggles3.setText("10");
+            struggles3.addActionListener(e->{
+                Object source = e.getSource();
+                struggles[2] = Integer.parseInt(((JTextField)source).getText());
+            });
+            participantStruggles.put(counter,struggles);
             panel.add(checkBox1);
             counter++;
         }
@@ -100,6 +127,9 @@ public class Simulation {
             gui.groupsWindow.setVisible(true);
 
 
+
+            System.out.println();
+
         });
         panel.add(startHashing);
 
@@ -113,7 +143,7 @@ public class Simulation {
 
 
 
-    private static String[][] hashing(Integer numberOfParticipants, HashMap<Integer,String> actives) {
+    private static final String[][] hashing(Integer numberOfParticipants, HashMap<Integer,String> actives) {
 
         int leftovers = numberOfParticipants%groupSizes;
         numberOfGroups = (numberOfParticipants-leftovers)/groupSizes;
@@ -158,5 +188,14 @@ public class Simulation {
 
 
         return groupChoices;
+    }
+
+
+
+    private static final String[][] weightedHashing(HashMap<Integer,Integer[]> struggles,  HashMap<Integer,String> actives){
+
+
+
+        return null;
     }
 }
