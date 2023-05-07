@@ -1,12 +1,5 @@
 package main;
 
-import jdk.jshell.spi.ExecutionControl;
-import junit.framework.TestSuite;
-import lombok.Getter;
-import lombok.Setter;
-import org.junit.Assert;
-import org.junit.Test;
-
 import javax.swing.*;
 import java.util.*;
 
@@ -317,97 +310,17 @@ class ExpressionPartTree {
 
 
 
-
-
-
-
-class LogicalExpressionParser {
-
-    public static void main(String[] args) {
-        reverseNumber(1234500078);
-        System.out.println(factorial(4));
-        System.out.println(factorial(0));
-        System.out.println(factorial(Integer.MIN_VALUE));
-        System.out.println(factorial(Integer.MAX_VALUE));
-        System.out.println(e(Integer.MAX_VALUE));
-        System.out.println(e(0));
-        if(e(2)==2.5)System.out.println("yes");
-        System.out.println(e(1));
-        System.out.println(e(2));
-        System.out.println(e(3));
-        for(int i = 0; i<10;i++)System.out.println(leibniz(i));
+class Hummer extends LinkedList<Boolean> {
+    public Hummer() {
+        super();
     }
-
-    public static double e(int n){
-        double result = 0;
-        int fact;
-
-        for(int i = 0; i<=n; i++){
-            fact = factorial(i);
-            if(fact>Integer.MAX_VALUE/10)break;
-            result += 1 / (double) fact;
-        }
-        return result;
-    }
-
-    public static int factorial(int n){
-        int result = 1;
-        for(int i=1; i<=n; i++){
-            result *= i;
-            if(result > Integer.MAX_VALUE/10)break;
-        }
-        return result;
-    }
-
-    public static void reverseNumber(int n){
-        boolean small = n<10;
-        boolean big = n/10 >= Integer.MAX_VALUE/100;
-
-        if(big){
-            System.out.println(n%10);
-            n -= n%10;
-            System.out.println(n%100/10);
-            n -= n%100;
-            n /= 100;
-        }
-
-        int result_partial = n;
-        int result = 0;
-        int potenz = 0;
-
-        if(small){
-            System.out.println(n);
-        }
-
-        else {
-            for (int i = 10; i <= n*10; i *= 10) {
-                result = result_partial % i;
-
-                if (result % i != 0) {
-                    System.out.println((result_partial % i) * 10 / i);
-                }
-
-                else {
-                    potenz = 0;
-                    while (!(1 >= result % i)) {
-                        potenz++;
-                        System.out.println((int) 0);
-                        i *= 10;
-                    }
-                    System.out.println((int)((result % i) / Math.pow(10, potenz)));
-                }
-                result_partial -= result_partial % i;
-            }
-        }
-    }
+}
 
 
-    //schreib mir eine Funktion für die Leibnizserie mit den gegebenen Funktionen in der Klasse
-    public static double leibniz(int n){
-        double result = 0;
-        for(int i = 0; i<=n; i++){
-            result += (Math.pow(-1, i) / (2*i+1));
-        }
-        return 4*result;
+
+class LogicalExpressionParser<Hummer> {
+// Das ist eine FUnktion, die einen HUmmer als Input nimmt und einen boolean löst
+    public String solve(Hummer hummer) {
+        return hummer.toString();
     }
 }
