@@ -363,28 +363,6 @@ class LogicalExpressionParser {
     }
 
     public static void reverseNumber(int n){
-        boolean isNegative = n<0;
-        boolean isMin = n==Integer.MIN_VALUE;
-
-        if(isMin){
-            System.out.println(8);
-            System.out.println(4);
-            System.out.println(6);
-            System.out.println(3);
-            System.out.println(8);
-            System.out.println(4);
-            System.out.println(7);
-            System.out.println(4);
-            System.out.println(1);
-            System.out.println(2);
-            System.out.println("-");
-            return;
-        }else{
-            if(isNegative){
-                n *= -1;
-            }
-        }
-
         boolean small = n<10;
         boolean big = n/10 >= Integer.MAX_VALUE/100;
 
@@ -423,11 +401,6 @@ class LogicalExpressionParser {
                 }
                 result_partial -= result_partial % i;
             }
-        }
-
-
-        if(isNegative){
-            System.out.println("-");
         }
     }
 
