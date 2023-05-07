@@ -335,6 +335,7 @@ class LogicalExpressionParser {
         System.out.println(e(1));
         System.out.println(e(2));
         System.out.println(e(3));
+        for(int i = 0; i<10;i++)System.out.println(leibniz(i));
     }
 
     public static double e(int n){
@@ -404,9 +405,9 @@ class LogicalExpressionParser {
     //schreib mir eine Funktion für die Leibnizserie mit den gegebenen Funktionen in der Klasse
     public static double leibniz(int n){
         double result = 0;
-        for(int i = 0; i<n; i++){
-            result += Math.pow(-1, i) / (2*i+1);
+        for(int i = 0; i<=n; i++){
+            result += (Math.pow(-1, i) / (2*i+1));
         }
-        return result;
+        return 4*result;
     }
 }
