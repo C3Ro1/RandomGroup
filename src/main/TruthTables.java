@@ -331,6 +331,7 @@ class LogicalExpressionParser {
         System.out.println(factorial(Integer.MAX_VALUE));
         System.out.println(e(Integer.MAX_VALUE));
         System.out.println(e(0));
+        if(e(2)==2.5)System.out.println("yes");
         System.out.println(e(1));
         System.out.println(e(2));
         System.out.println(e(3));
@@ -340,7 +341,7 @@ class LogicalExpressionParser {
         double result = 0;
         int fact;
 
-        for(int i = 0; i<n; i++){
+        for(int i = 0; i<=n; i++){
             fact = factorial(i);
             if(fact>Integer.MAX_VALUE/10)break;
             result += 1 / (double) fact;
@@ -350,16 +351,11 @@ class LogicalExpressionParser {
 
     public static int factorial(int n){
         int result = 1;
-        if(n<1000){
         for(int i=1; i<=n; i++){
             result *= i;
             if(result > Integer.MAX_VALUE/10)break;
         }
         return result;
-        } else {
-            System.out.print("This Result may be precise: ");
-            return Integer.MAX_VALUE;
-        }
     }
 
     public static void reverseNumber(int n){
